@@ -2,8 +2,8 @@ import streamlit
 
 streamlit.title("My Parents New Healthy Diner")
 
-Breakfast Menu
+streamlit.text('Breakfast Menu')
 
-Omega 3 & Bluebetty Oatmeal
-Kale, Spinach & Rocket Smoothie
-Hard-Boiled Free-Range Egg
+streamlit.text('Omega 3 & Bluebetty Oatmeal')
+streamlit.text('Kale, Spinach & Rocket Smoothie')
+streamlit.text('Hard-Boiled Free-Range Egg')
