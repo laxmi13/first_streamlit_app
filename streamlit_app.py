@@ -31,7 +31,7 @@ fruit_choice = streamlit.text_input('What fruit would you like to information ab
 streamlit.write('The user entered', fruit_choice)
 
 #old -- fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 
 #take the json version of the response and normalized it
