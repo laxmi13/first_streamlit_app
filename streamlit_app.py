@@ -30,38 +30,20 @@ streamlit.dataframe(fruits_to_show)
 #new section to display fruityvice api response
 streamlit.header('Fruitvice Fruit Advice!')
 
-#snowflake related functions:
-def get_fruit_load_list():
-   with my_cnx.cursor() as my_cur:
-         my_cur.execute("SELECT * FROM fruit_load_list")
-         return my_cur.fetchall()
-      
-def insert_row_snowflake(new_fruit):
-   with my_cnx.cursor() as my_cur:
-         my_cur.execute("insert into fruit_load_list ('from streamlit')")
-         return "Thanks for adding " + new_fruit
-
 #Add a button to load the fruit
 if streamlit.button('Get fruit load list'):
      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
      my_data_rows = get_fruit_load_list()
      streamlit.dataframe(my_data_rows)
       
+#snowflake related functions:
+def get_fruit_load_list():
+   with my_cnx.cursor() as my_cur:
+         my_cur.execute("SELECT * FROM fruit_load_list")
+         return my_cur.fetchall()
       
-#my_cur = my_cnx.cursor()
-#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-#my_cur.execute("SELECT * FROM fruit_load_list")
-#my_data_row = my_cur.fetchone()
-#streamlit.text("Hello from snowflake")
-#streamlit.text("The fruit load list contains:")
-#streamlit.text(my_data_row)
-#my_data_rows = my_cur.fetchall()
-#streamlit.header("The fruit load list contains:")
-#streamlit.dataframe(my_data_rows)
-
 #new section to display fruityvice api response
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
-streamlit.write('The user entered', add_my_fruit)
 
 #Add a button to add the fruit
 if streamlit.button('Add a fruit to the list'):
@@ -69,6 +51,15 @@ if streamlit.button('Add a fruit to the list'):
      back_from_function = insert_row_snowflake(add_my_fruit)
      streamlit.dataframe(back_from_function)
       
+#snowflake related functions:
+def insert_row_snowflake(new_fruit):
+   with my_cnx.cursor() as my_cur:
+         my_cur.execute("insert into fruit_load_list ('from streamlit')")
+         return "Thanks for adding " + new_fruit
+
+  
+
+    
 #create a repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice):
    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
@@ -91,3 +82,4 @@ try:
     #fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 except URLError as e:
   streamlit.error()
+
