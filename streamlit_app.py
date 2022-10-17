@@ -8,7 +8,7 @@ my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
 streamlit.text("Hello from snowflake")
-strealit.text(my_data_row)
+streamlit.text(my_data_row)
 
 
 streamlit.title("My Mom's New Healthy Diner")
