@@ -5,7 +5,6 @@ import snowflake.connector
 from urllib.error import URLError
 
 
-
 streamlit.title("My Mom's New Healthy Diner")
 
 streamlit.header('Breakfast Menu')
@@ -50,19 +49,25 @@ streamlit.dataframe(my_data_rows)
 
 #my_cur.execute("insert into fruit_load_list values ('from streamlit')")
 
+#create a repeatable code block (called a function)
+def get_fruityvice_data(this_fruit_choice):
+   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+   return fruityvice_normalized
+  
 try:
-
-  fruit_choice = streamlit.text_input('What fruit would you like to add?')
+  fruit_choice = streamlit.text_input('What fruit would you like information about?')
   if not fruit_choice:
       streamlit.error("Please select a fruit to get information")
   else:
     ##streamlit.write('The user entered', fruit_choice)
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    #fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
     #old -- fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
     #take the json version of the response and normalized it
-    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    #fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     #output it in the screen as a table
-    streamlit.dataframe(fruityvice_normalized)
+    back_from_function = get_fruityvice_data(fruit_choice)
+    streamlit.dataframe(back_from_function)
     #fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 except URLError as e:
   streamlit.error()
