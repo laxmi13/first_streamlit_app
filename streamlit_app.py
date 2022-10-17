@@ -42,8 +42,16 @@ def get_fruit_load_list():
          my_cur.execute("SELECT * FROM fruit_load_list")
          return my_cur.fetchall()
       
+)
+
+#snowflake related functions:
+def insert_row_snowflake(new_fruit):
+   with my_cnx.cursor() as my_cur:
+         my_cur.execute("insert into fruit_load_list ('from streamlit')")
+         return "Thanks for adding " + new_fruit
+
 #new section to display fruityvice api response
-add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+add_my_fruit = streamlit.text_input('What fruit would you like to add?'
 
 #Add a button to add the fruit
 if streamlit.button('Add a fruit to the list'):
@@ -51,15 +59,7 @@ if streamlit.button('Add a fruit to the list'):
      back_from_function = insert_row_snowflake(add_my_fruit)
      streamlit.dataframe(back_from_function)
       
-#snowflake related functions:
-def insert_row_snowflake(new_fruit):
-   with my_cnx.cursor() as my_cur:
-         my_cur.execute("insert into fruit_load_list ('from streamlit')")
-         return "Thanks for adding " + new_fruit
-
-  
-
-    
+     
 #create a repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice):
    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
