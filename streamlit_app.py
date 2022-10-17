@@ -42,7 +42,6 @@ def get_fruit_load_list():
          my_cur.execute("SELECT * FROM fruit_load_list")
          return my_cur.fetchall()
       
-)
 
 #snowflake related functions:
 def insert_row_snowflake(new_fruit):
