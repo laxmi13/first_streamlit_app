@@ -65,8 +65,6 @@ if streamlit.button('Add a fruit to the list'):
 #streamlit.dataframe(my_data_rows)
 
 #new section to display fruityvice api response
-def insert_row_snowflake(new_fruit):
-   with 
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 streamlit.write('The user entered', add_my_fruit)
 
