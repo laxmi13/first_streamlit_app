@@ -66,7 +66,7 @@ streamlit.write('The user entered', add_my_fruit)
 #Add a button to add the fruit
 if streamlit.button('Add a fruit to the list'):
      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-     back_from_function = get_fruityvice_data(fruit_choice)
+     back_from_function = insert_row_snowflake(fruit_choice)
      streamlit.dataframe(back_from_function)
       
 #create a repeatable code block (called a function)
