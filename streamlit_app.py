@@ -19,8 +19,8 @@ def get_fruit_load_list():
 #snowflake related functions:
 def insert_row_snowflake(new_fruit):
    with my_cnx.cursor() as my_cur:
-         my_cur.execute("SELECT * FROM fruit_load_list")
-         #my_cur.execute("insert into fruit_load_list ('from streamlit')")
+         #my_cur.execute("SELECT * FROM fruit_load_list")
+         my_cur.execute("insert into fruit_load_list ('from streamlit')")
          return "Thanks for adding " + new_fruit
       
 #Add a button to load the fruit
