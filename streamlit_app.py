@@ -19,6 +19,7 @@ def get_fruit_load_list():
 #snowflake related functions:
 def insert_row_snowflake(new_fruit):
    with my_cnx.cursor() as my_cur:
+         my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
          my_cur.execute("insert into fruit_load_list values ('"+ new_fruit +"')")
          return "Thanks for adding " + new_fruit
       
